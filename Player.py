@@ -1,5 +1,6 @@
 import yt_dlp
 
+
 class Player:
     channel:str = None
     queue = []
