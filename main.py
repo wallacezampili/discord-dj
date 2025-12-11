@@ -1,22 +1,25 @@
 import discord
-import interactions
+import Classes.interactions as interactions
 from discord import Intents
 from discord.ext import commands
 import os
 import dotenv
+from Classes.Player import Player
 
 # Load environment variables from .env file
 dotenv.load_dotenv()
 TOKEN = os.getenv('TOKEN')
 
+# Set up the bot with all intents
 bot = commands.Bot(command_prefix='!', intents=Intents.all())
+
+# Create a Player instance
+player = Player()
 
 # Event when the bot is ready
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user}')
-
-
 
 @bot.event
 async def on_soundboard_sound_finish(sound):
@@ -38,7 +41,7 @@ async def voice(interaction):
 
 @bot.tree.command(name="play", description="play a song")
 async def play(interaction, url: str):
-    await interactions.play(interaction, url)
+    await interactions.play(interaction, url, player)
 
 if __name__ == '__main__':
     bot.run(TOKEN)
