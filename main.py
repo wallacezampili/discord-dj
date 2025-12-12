@@ -10,6 +10,8 @@ from Classes.Player import Player
 dotenv.load_dotenv()
 TOKEN = os.getenv('TOKEN')
 
+
+
 # Set up the bot with all intents
 bot = commands.Bot(command_prefix='!', intents=Intents.all())
 
